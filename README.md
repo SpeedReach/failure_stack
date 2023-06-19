@@ -7,7 +7,7 @@
 
 ---
 
-A error handling library inspired by rust and error-stack.
+A error handling library inspired by rust and error-stack, to prevent unpredicted errors.
 
 ## Why use failure_stack ?
 The origin error handle method: throw catch, may cause unpredicted errors and behaviors,

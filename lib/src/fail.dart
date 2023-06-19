@@ -1,13 +1,7 @@
-
-
-
 part of 'result.dart';
 
-
 ///Representing a failed result.
-class Fail<T,F> extends Result<T,F>{
-
-
+class Fail<T, F> extends Result<T, F> {
   final F failure;
 
   final FailureStack<F> stack;
@@ -22,7 +16,7 @@ class Fail<T,F> extends Result<T,F>{
 
   @override
   T expect(String msg) {
-    assert(false,msg);
+    assert(false, msg);
     throw stack;
   }
 
@@ -46,11 +40,14 @@ class Fail<T,F> extends Result<T,F>{
   Result<T, F2> mapFail<F2>(F2 Function(F failure) func) {
     String location = _getInvokeLine();
     F2 newFailure = func(failure);
-    return Fail<T,F2>._(newFailure, stack.pushFailure(Failure(newFailure, location)));
+    return Fail<T, F2>._(
+        newFailure, stack.pushFailure(Failure(newFailure, location)));
   }
 
   @override
-  ReturnValue match<ReturnValue>({required ReturnValue Function(T p1) ok, required ReturnValue Function(F p1) fail}) {
+  ReturnValue match<ReturnValue>(
+      {required ReturnValue Function(T p1) ok,
+      required ReturnValue Function(F p1) fail}) {
     return fail(failure);
   }
 
@@ -60,7 +57,8 @@ class Fail<T,F> extends Result<T,F>{
   @override
   Result<T, F2> pushFail<F2>(F2 newFailure) {
     String location = _getInvokeLine();
-    return Fail<T,F2>._(newFailure, stack.pushFailure(Failure(newFailure, location)));
+    return Fail<T, F2>._(
+        newFailure, stack.pushFailure(Failure(newFailure, location)));
   }
 
   @override
@@ -83,29 +81,13 @@ class Fail<T,F> extends Result<T,F>{
     stack.latestFailure.attachPrintable(o);
     return this;
   }
-
 }
 
-
-extension ExceptionAdapter<F extends Exception> on F {
-
-  Result<T,F> intoFailure <T> (){
+extension FailureAdapter<F extends Object> on F {
+  Result<T, F> intoFailure<T>() {
     String invokeLine = _getInvokeLine();
     var failure = Failure(this, invokeLine);
-    return Fail._(this, FailureStack._new(failure, List.of([failure], growable: false)));
+    return Fail._(
+        this, FailureStack._new(failure, List.of([failure], growable: false)));
   }
-
 }
-
-extension ErrorAdapter<F extends Error> on F {
-
-  Result<T,F> intoFailure <T> (){
-    String invokeLine = _getInvokeLine();
-    var failure = Failure(this, invokeLine);
-    return Fail._(this, FailureStack._new(failure, List.of([failure], growable: false)));
-  }
-
-}
-
-
-

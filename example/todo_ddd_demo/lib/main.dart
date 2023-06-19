@@ -15,7 +15,7 @@ class TodoApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RepositoryProvider<TodoRepositoryInterface>(
-      create: (_)=> TodoRepository(),
+      create: (_) => TodoRepository(),
       child: const MaterialApp(
         home: TodoPage(),
       ),

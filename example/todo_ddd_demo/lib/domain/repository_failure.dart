@@ -1,10 +1,8 @@
-
-
-sealed class RepositoryFailure{
+sealed class RepositoryFailure {
   const RepositoryFailure();
 }
 
-class UnExpectedFailure extends RepositoryFailure{
+class UnExpectedFailure extends RepositoryFailure {
   final Object? error;
   const UnExpectedFailure(this.error);
 }
@@ -17,7 +15,7 @@ class ConnectionFailure extends RepositoryFailure {
   }
 }
 
-class UnAuthorizeFailure extends RepositoryFailure{
+class UnAuthorizeFailure extends RepositoryFailure {
   const UnAuthorizeFailure();
   @override
   String toString() {
@@ -25,8 +23,7 @@ class UnAuthorizeFailure extends RepositoryFailure{
   }
 }
 
-class ServerFailure extends RepositoryFailure{
-
+class ServerFailure extends RepositoryFailure {
   const ServerFailure();
 
   @override
@@ -35,8 +32,7 @@ class ServerFailure extends RepositoryFailure{
   }
 }
 
-class IllegalActionFailure extends RepositoryFailure{
-
+class IllegalActionFailure extends RepositoryFailure {
   final String message;
 
   const IllegalActionFailure(this.message);
@@ -45,9 +41,8 @@ class IllegalActionFailure extends RepositoryFailure{
   String toString() {
     return "IllegalActionFailure: $message";
   }
-
 }
 
-class RequestCanceledFailure extends RepositoryFailure{
+class RequestCanceledFailure extends RepositoryFailure {
   const RequestCanceledFailure();
 }

@@ -1,6 +1,3 @@
-
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:result_stack/failure_stack.dart';
@@ -23,15 +20,17 @@ class TodoPage extends StatelessWidget {
             TextButton(
               onPressed: () async {
                 final result = await cubit.createTodo();
-                switch (result){
-                  case Ok<String,CreateTodoFailure> ok: {
-                    debugPrint("Success: ${ok.value}");
-                    //showDialog(context: context, builder: (_) => Text("Success: ${ok.value}"));
-                  }
-                  case Fail<String,CreateTodoFailure> fail:{
-                    debugPrint("Fail: ${fail.failure}");
-                    //showDialog(context: context, builder: (_) => Text("Fail: ${fail.failure}"));
-                  }
+                switch (result) {
+                  case Ok<String, CreateTodoFailure> ok:
+                    {
+                      debugPrint("Success: ${ok.value}");
+                      //showDialog(context: context, builder: (_) => Text("Success: ${ok.value}"));
+                    }
+                  case Fail<String, CreateTodoFailure> fail:
+                    {
+                      debugPrint("Fail: ${fail.failure}");
+                      //showDialog(context: context, builder: (_) => Text("Fail: ${fail.failure}"));
+                    }
                 }
               },
               child: const Text("Create Task"),
@@ -41,6 +40,4 @@ class TodoPage extends StatelessWidget {
       ),
     );
   }
-
-
 }

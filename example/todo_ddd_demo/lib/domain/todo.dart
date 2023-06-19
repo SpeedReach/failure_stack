@@ -1,6 +1,4 @@
-
-
-class Todo{
+class Todo {
   final String title;
   final String description;
 
@@ -9,10 +7,8 @@ class Todo{
     required this.description,
   });
 
-  factory Todo.fromJson(Map<String,dynamic> json) =>
-      Todo(
-          title: json["title"],
-          description: json["description"],
+  factory Todo.fromJson(Map<String, dynamic> json) => Todo(
+        title: json["title"],
+        description: json["description"],
       );
-
 }

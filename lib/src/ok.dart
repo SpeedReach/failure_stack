@@ -1,11 +1,7 @@
-
-
 part of 'result.dart';
 
-
 ///Representing a Ok result.
-class Ok<T,F> extends Result<T,F>{
-
+class Ok<T, F> extends Result<T, F> {
   final T value;
 
   const Ok(this.value);
@@ -35,7 +31,9 @@ class Ok<T,F> extends Result<T,F>{
   }
 
   @override
-  ReturnValue match<ReturnValue>({required ReturnValue Function(T p1) ok, required ReturnValue Function(F p1) fail}) {
+  ReturnValue match<ReturnValue>(
+      {required ReturnValue Function(T p1) ok,
+      required ReturnValue Function(F p1) fail}) {
     return ok(value);
   }
 
@@ -66,5 +64,4 @@ class Ok<T,F> extends Result<T,F>{
   Result<T, F> attach(Object o) {
     return this;
   }
-
 }

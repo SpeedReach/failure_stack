@@ -1,14 +1,13 @@
 name: failure_stack
-description: A starting point for Dart libraries or applications.
-version: 1.0.0
-# repository: https://github.com/my_org/my_repo
+description: A error handling library inspired by rust and error-stack, to prevent unpredicted errors.
+version: 0.1.0
+repository: https://github.com/SpeedReach/failure_stack/tree/main
 
 environment:
-  sdk: ^3.0.1
+  sdk: ^3.0.0
 
-# Add regular dependencies here.
-dependencies:
-  # path: ^1.8.0
+
+
 
 dev_dependencies:
   lints: ^2.0.0
