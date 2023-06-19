@@ -2,6 +2,8 @@ import 'package:failure_stack/failure_stack.dart';
 import 'package:test/test.dart';
 
 
+/// Todo
+
 class ConnectionFailure{
   @override
   String toString() {

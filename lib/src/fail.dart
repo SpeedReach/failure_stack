@@ -9,6 +9,7 @@ class Fail<T,F> extends Result<T,F>{
 
 
   final F failure;
+
   final FailureStack<F> stack;
 
   const Fail._(this.failure, this.stack);
@@ -27,6 +28,8 @@ class Fail<T,F> extends Result<T,F>{
 
   @override
   F? get fail => failure;
+
+  List<Object> get attachments => stack.latestFailure._attachments;
 
   @override
   bool get isFail => true;
