@@ -65,7 +65,7 @@ void main(){
       final r = await failFutureNumber();
       FailureTypeError? e;
       try{
-        Result<int,int> result = await asyncResultHandleEnvironment(() async {
+        await asyncResultHandleEnvironment<int,int>(() async {
           return Ok(r.unwrap());
         });
       }
@@ -86,7 +86,7 @@ void main(){
       FailureTypeError? e;
       try{
         final fail = Fail<int,String>("failed");
-        Result<int,int> result = resultHandleEnvironment(() => Ok(fail.unwrap()));
+        resultHandleEnvironment<int,int>(() => Ok(fail.unwrap()));
       }
       on FailureTypeError catch(er){
         e = er;
