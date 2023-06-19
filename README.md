@@ -1,5 +1,11 @@
-<a href=""><img src="https://github.com/SpeedReach/failure_stack/actions/workflows/build/badge.svg" alt="build"></a>
+</p>
+
+<p align="center">
+<a href=""><img src="https://github.com/SpeedReach/failure_stack/actions/workflows/build.yml/badge.svg" alt="build"></a>
 <a href=""><img src="https://codecov.io/gh/SpeedReach/failure_stack/blob/main/graph/badge.svg" alt="codecov"></a>
+</p>
+
+---
 
 A error handling library inspired by rust and error-stack.
 
