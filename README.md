@@ -8,7 +8,7 @@ occur.
 
 <p>
   <img src="https://github.com/SpeedReach/failure_stack/blob/main/doc/example-1.jpeg?raw=true"
-    alt="An image of the failure stack" height="400"/>
+    alt="An image of the failure stack" height="300"/>
 </p>
 
 ## Usage
