@@ -1,6 +1,6 @@
 name: failure_stack
 description: A error handling library inspired by rust and error-stack, to prevent unpredicted errors.
-version: 0.1.0
+version: 0.1.1
 repository: https://github.com/SpeedReach/failure_stack/tree/main
 
 environment:

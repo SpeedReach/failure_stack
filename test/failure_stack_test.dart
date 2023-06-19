@@ -122,6 +122,7 @@ void main(){
     f2.attach("aatttt 1");
     f2.attach("attt 2");
     print(f2);
+    print(f1.stack.latestFailure);
   });
 
 }

@@ -3,3 +3,5 @@
 - Initial version.
 
 # 0.1.1
+
+- Update documentation
