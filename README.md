@@ -1,3 +1,6 @@
+<a href=""><img src="https://github.com/SpeedReach/failure_stack/actions/workflows/build/badge.svg" alt="build"></a>
+<a href=""><img src="https://codecov.io/gh/SpeedReach/failure_stack/blob/main/graph/badge.svg" alt="codecov"></a>
+
 A error handling library inspired by rust and error-stack.
 
 ## Why use failure_stack ?
