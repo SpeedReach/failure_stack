@@ -2,14 +2,15 @@ part of 'result.dart';
 
 ///In the [process], results with type [Result<_, NewFailureType>] can be unwrapped safely and elegantly
 ///without causing errors, because the [resultHandleEnvironment] catches the [FailureStack<NewFailureType>] for us.
-///For async processes use [asyncResultHandleEnvironment].
+///For async processes use [asyncResultHandleEnvironment]. <br><br>
+///**Warning: Do not unwrap results that do not match the failure type, use [Result.mapFail] or [Result.pushFail] to change failure type.**
 ///
 ///```dart
 ///Result<int,ParsingExperimentError> experiment(){
 ///   return resultHandleEnvironment(() {
 ///     Result<int,ParsingError> result = parse("o13");
 ///     // We can unwrap here safely.
-///     int ok = result.pushFailure(ParsingExperimentError()).unwrap();
+///     int ok = result.pushFail(ParsingExperimentError()).unwrap();
 ///     return Ok(ok);
 ///   });
 ///}

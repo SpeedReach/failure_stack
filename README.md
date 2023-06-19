@@ -56,6 +56,7 @@ switch(parse(targetString)){
 ```
 3. When you are in a function that returns a Result type too,
 use `resultHandleEnvironment` instead.
+   **Warning: Do not unwrap results that do not match the failure type, use `Result.mapFail` or `Result.pushFail` to change failure type.**
 ```dart
 Result<int,ParsingExperimentError> experiment(){
    return resultHandleEnvironment(() {
