@@ -19,7 +19,7 @@ class ParseExperimentFailure {
 
 Result<List<int>, ParseExperimentFailure> parseExperiment(String input) {
   return resultHandleEnvironment(() {
-    final values = input
+    List<int> values = input
         .split(" ")
         .map((e) => parseString(e))
         .map((e) => e.pushFail(const ParseExperimentFailure()))

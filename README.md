@@ -77,7 +77,7 @@ class ParseExperimentFailure {
 
 Result<List<int>, ParseExperimentFailure> parseExperiment(String input) {
   return resultHandleEnvironment(() {
-    final values = input
+    List<int> values = input
         .split(" ")
         .map((e) => parseString(e))  // Result<int, FormatException>
         .map((e) => e.pushFail(const ParseExperimentFailure())) // Result<int, ParseExperimentFailure>
@@ -85,8 +85,8 @@ Result<List<int>, ParseExperimentFailure> parseExperiment(String input) {
         //when the result is Ok, it unwraps to int,
         //otherwise it throws ParseExperimentFailure and get catches by the 
         //resultHandleEnvironment and returns as Fail(ParseExperimentFailure)
-        .map((e) => e.unwrap())
-        .toList(growable: false);
+        .map((e) => e.unwrap()) //int
+        .toList(growable: false); 
     return Ok(values);
   });
 }
