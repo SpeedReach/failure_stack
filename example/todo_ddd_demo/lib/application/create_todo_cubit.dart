@@ -3,8 +3,8 @@
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:result_stack/failure_stack.dart';
-import 'package:todo_ddd_demo/application/CreateTodoFailure.dart';
-import 'package:todo_ddd_demo/application/CreateTodoForm.dart';
+import 'package:todo_ddd_demo/application/create_todo_failure.dart';
+import 'package:todo_ddd_demo/application/create_todo_form.dart';
 import 'package:todo_ddd_demo/domain/todo.dart';
 import 'package:todo_ddd_demo/domain/todo_repository_interface.dart';
 

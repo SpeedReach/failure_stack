@@ -18,10 +18,15 @@ extension DioExceptionAdapter on DioException{
       case DioExceptionType.badCertificate:
         return UnExpectedFailure(error);
       case DioExceptionType.badResponse:
-        if(response == null || response!.statusCode == null) return const UnExpectedFailure(null);
-        else if(response!.statusCode == 401) return const UnAuthorizeFailure();
-        else if(response!.statusCode! >= 500) return const ServerFailure();
-        else if(response!.statusCode! >= 400) return IllegalActionFailure(response!.statusMessage ?? "");
+        if(response == null || response!.statusCode == null) {
+          return const UnExpectedFailure(null);
+        } else if(response!.statusCode == 401) {
+          return const UnAuthorizeFailure();
+        } else if(response!.statusCode! >= 500) {
+          return const ServerFailure();
+        } else if(response!.statusCode! >= 400) {
+          return IllegalActionFailure(response!.statusMessage ?? "");
+        }
         return const UnExpectedFailure(null);
       case DioExceptionType.cancel:
         return const RequestCanceledFailure();

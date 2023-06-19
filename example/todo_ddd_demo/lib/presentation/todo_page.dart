@@ -4,8 +4,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:result_stack/failure_stack.dart';
-import 'package:todo_ddd_demo/application/CreateTodoCubit.dart';
-import 'package:todo_ddd_demo/application/CreateTodoFailure.dart';
+import 'package:todo_ddd_demo/application/create_todo_cubit.dart';
+import 'package:todo_ddd_demo/application/create_todo_failure.dart';
 
 class TodoPage extends StatelessWidget {
   const TodoPage({super.key});
@@ -25,10 +25,12 @@ class TodoPage extends StatelessWidget {
                 final result = await cubit.createTodo();
                 switch (result){
                   case Ok<String,CreateTodoFailure> ok: {
-                    showDialog(context: context, builder: (_) => Text("Success: ${ok.value}"));
+                    debugPrint("Success: ${ok.value}");
+                    //showDialog(context: context, builder: (_) => Text("Success: ${ok.value}"));
                   }
                   case Fail<String,CreateTodoFailure> fail:{
-                    showDialog(context: context, builder: (_) => Text("Fail: ${fail.failure}"));
+                    debugPrint("Fail: ${fail.failure}");
+                    //showDialog(context: context, builder: (_) => Text("Fail: ${fail.failure}"));
                   }
                 }
               },

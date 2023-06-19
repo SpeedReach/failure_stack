@@ -33,7 +33,7 @@ Result<(), GetTasksFailure> f2() => resultHandleEnvironment(() {
 });
 
 Result<(),ExampleFailure> f3() => resultHandleEnvironment((){
-  var f2Result = f2().mapFail((_)=>ExampleFailure()).unwrap();
+  f2().mapFail((_)=>ExampleFailure()).unwrap();
   return Ok(());
 });
 

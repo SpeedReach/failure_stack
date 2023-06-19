@@ -62,8 +62,6 @@ class Fail<T,F> extends Result<T,F>{
 
   @override
   T unwrap() {
-    String invokeLine = _getInvokeLine();
-
     throw stack;
   }
 
