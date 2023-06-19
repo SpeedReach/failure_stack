@@ -40,7 +40,8 @@ Result<(),ExampleFailure> f3() => resultHandleEnvironment((){
 
 void main() {
   group('A group of tests', () {
-    final result = f3();
-    print((result as Fail).stack);
+    test("description", () {
+      assert(f3() is Fail);
+    });
   });
 }
