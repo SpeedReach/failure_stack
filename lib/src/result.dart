@@ -48,7 +48,6 @@ sealed class Result<T, F> {
   ///does nothing if it's a ok result.
   Result<T, F2> mapFail<F2>(F2 Function(F failure) func);
 
-
   /// attach some extra information to be printed when failed
   Result<T, F> attach(Object o);
 }

@@ -21,7 +21,8 @@ Result<List<int>, ParseExperimentFailure> parseExperiment(String input) {
   return resultHandleEnvironment(() {
     final values = input
         .split(" ")
-        .map((e) => parseString(e).pushFail(const ParseExperimentFailure()))
+        .map((e) => parseString(e))
+        .map((e) => e.pushFail(const ParseExperimentFailure()))
         .map((e) => e.unwrap())
         .toList(growable: false);
     return Ok(values);

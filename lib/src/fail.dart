@@ -44,7 +44,6 @@ class Fail<T, F> extends Result<T, F> {
         newFailure, stack.pushFailure(Failure(newFailure, location)));
   }
 
-
   @override
   T? get ok => null;
 

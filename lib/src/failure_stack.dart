@@ -51,7 +51,6 @@ class FailureStack<F> {
     buffer.write("╰╴ end");
     return buffer.toString();
   }
-
 }
 
 class Failure<F> {

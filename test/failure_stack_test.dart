@@ -1,11 +1,7 @@
-
-
-
-
 import 'package:failure_stack/failure_stack.dart';
 import 'package:test/scaffolding.dart';
 
-void main(){
+void main() {
   test("test ok", () {
     final ok = Ok(1);
     assert(ok.unwrap() == 1);
@@ -15,9 +11,9 @@ void main(){
     assert(ok.mapFail((failure) => -1).isOk);
     assert(ok.isOk);
     assert(!ok.isFail);
-    assert(ok.ok  == 1);
+    assert(ok.ok == 1);
     assert(ok.fail == null);
-    final newOk = ok.map((p1) => p1+1);
+    final newOk = ok.map((p1) => p1 + 1);
     assert(newOk.ok == 2);
     assert(ok.pushFail(3).isOk);
     ok.attach("printable");
@@ -26,10 +22,10 @@ void main(){
   });
 
   group("test fail", () {
-    final fail = Fail<int,String>("failed");
+    final fail = Fail<int, String>("failed");
     test("basic", () {
       assert(fail.isFail);
-      assert(!fail.isOk );
+      assert(!fail.isOk);
       assert(fail.fail == "failed");
       assert(fail.ok == null);
       assert(fail.failure == "failed");
@@ -44,66 +40,59 @@ void main(){
     });
     test("unwrap", () {
       assert(fail.unwrapOr(2) == 2);
-      assert(fail.unwrapOrElse(() => 3) == 3 );
+      assert(fail.unwrapOrElse(() => 3) == 3);
     });
   });
 
-
-
   group("result handle environment", () {
-
     test("async environment no error", () async {
       final r = await failFutureNumber();
-      Result<int,int> result = await asyncResultHandleEnvironment(() async {
+      Result<int, int> result = await asyncResultHandleEnvironment(() async {
         return Ok(r.pushFail(-1).unwrap());
       });
       assert(result.isFail);
       assert(result.fail == -1);
     });
 
-    test("async environment with error", () async{
+    test("async environment with error", () async {
       final r = await failFutureNumber();
       FailureTypeError? e;
-      try{
-        await asyncResultHandleEnvironment<int,int>(() async {
+      try {
+        await asyncResultHandleEnvironment<int, int>(() async {
           return Ok(r.unwrap());
         });
-      }
-      on FailureTypeError catch (er){
+      } on FailureTypeError catch (er) {
         e = er;
       }
       assert(e != null);
     });
 
-    test("sync environment no error", (){
-      final fail = Fail<int,String>("failed");
-      Result<int,int> result = resultHandleEnvironment(() => Ok(fail.pushFail(-1).unwrap()));
+    test("sync environment no error", () {
+      final fail = Fail<int, String>("failed");
+      Result<int, int> result =
+          resultHandleEnvironment(() => Ok(fail.pushFail(-1).unwrap()));
       assert(result.isFail);
       assert(result.fail == -1);
     });
 
-    test("sync env with error", (){
+    test("sync env with error", () {
       FailureTypeError? e;
-      try{
-        final fail = Fail<int,String>("failed");
-        resultHandleEnvironment<int,int>(() => Ok(fail.unwrap()));
-      }
-      on FailureTypeError catch(er){
+      try {
+        final fail = Fail<int, String>("failed");
+        resultHandleEnvironment<int, int>(() => Ok(fail.unwrap()));
+      } on FailureTypeError catch (er) {
         e = er;
       }
       assert(e != null);
       print(e);
     });
-
   });
 
-
   test("adapt Exceptions and Errors", () {
-    Result<int,FormatException> parse(String s) {
-      try{
+    Result<int, FormatException> parse(String s) {
+      try {
         return Ok(int.parse(s));
-      }
-      on FormatException catch(e){
+      } on FormatException catch (e) {
         return e.intoFailure();
       }
     }
@@ -124,11 +113,8 @@ void main(){
     print(f2);
     print(f1.stack.latestFailure);
   });
-
 }
 
-
-Future<Result<int,String>> failFutureNumber() async{
-  return Future.delayed(Duration(microseconds: 1), ()=> Fail("failed"));
+Future<Result<int, String>> failFutureNumber() async {
+  return Future.delayed(Duration(microseconds: 1), () => Fail("failed"));
 }
-

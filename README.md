@@ -58,23 +58,44 @@ switch(parse(targetString)){
 use `resultHandleEnvironment` instead.
    **Warning: Do not unwrap results that do not match the failure type, use `Result.mapFail` or `Result.pushFail` to change failure type.**
 ```dart
-Result<int,ParsingExperimentError> experiment(){
-   return resultHandleEnvironment(() {
-     Result<int,ParsingError> result = parse("o13");
-     // We can unwrap here safely, in other cases, unwrapping a Fail will throw error.
-     // note that we use pushFailure to match Failure type
-     int ok = result
-             .pushFailure(ParsingExperimentError())
-             .attach("extra info") //attach anything you want
-             .unwrap();
-     return Ok(ok);
-   });
+Result<int, FormatException> parseString(String s) {
+  try {
+    return Ok(int.parse(s));
+  } on FormatException catch (e) {
+    Result<int, FormatException> r = e.intoFailure();
+    return r.attach("Failed parsing $s to int");
+  }
 }
+
+class ParseExperimentFailure {
+  const ParseExperimentFailure();
+  @override
+  String toString() {
+    return "ParseExperimentFailure: invalid experiment input";
+  }
+}
+
+Result<List<int>, ParseExperimentFailure> parseExperiment(String input) {
+  return resultHandleEnvironment(() {
+    final values = input
+        .split(" ")
+        .map((e) => parseString(e))  // Result<int, FormatException>
+        .map((e) => e.pushFail(const ParseExperimentFailure())) // Result<int, ParseExperimentFailure>
+        
+        //when the result is Ok, it unwraps to int,
+        //otherwise it throws ParseExperimentFailure and get catches by the 
+        //resultHandleEnvironment and returns as Fail(ParseExperimentFailure)
+        .map((e) => e.unwrap())
+        .toList(growable: false);
+    return Ok(values);
+  });
+}
+
 ```
 
 ### Converting Exceptions and Errors to Failure
 
-1. use the `intoFailure` function
+Use the `intoFailure()` extension
 ```dart
 Future<Result<(), DioException>> callApi() async {
  try{
@@ -84,25 +105,4 @@ Future<Result<(), DioException>> callApi() async {
   return e.intoFailure();
  }
 }
-```
-2. write an adapter function
-```dart
-  RepositoryFailure intoRepositoryFailure(){
-    switch(type){
-      case DioExceptionType.connectionTimeout:
-        return const ConnectionFailure();
-      case DioExceptionType.badResponse:
-        if(response == null || response!.statusCode == null) {
-          return const UnExpectedFailure(null);
-        } else if(response!.statusCode == 401) {
-          return const UnAuthorizeFailure();
-        } else if(response!.statusCode! >= 500) {
-          return const ServerFailure();
-        } else if(response!.statusCode! >= 400) {
-          return IllegalActionFailure(response!.statusMessage ?? "");
-        }
-     case DioExceptionType.unknown:
-        return const UnExpectedFailure(null);
-    }
-  }
 ```

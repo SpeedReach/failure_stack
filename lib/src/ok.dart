@@ -30,7 +30,6 @@ class Ok<T, F> extends Result<T, F> {
     return Ok(value);
   }
 
-
   @override
   T? get ok => value;
 
