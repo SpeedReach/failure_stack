@@ -1,5 +1,6 @@
 part of 'result.dart';
 
+///The failure stack that can be printed out.
 class FailureStack<F> {
   final Failure<F> latestFailure;
   final List<Failure> frames;
@@ -16,7 +17,7 @@ class FailureStack<F> {
 
   FailureStack._new(this.latestFailure, this.frames);
 
-  FailureStack<F2> pushFailure<F2>(Failure<F2> newFailure) {
+  FailureStack<F2> _pushFailure<F2>(Failure<F2> newFailure) {
     return FailureStack._push(this, newFailure);
   }
 
@@ -53,6 +54,7 @@ class FailureStack<F> {
   }
 }
 
+///Containing the location of where the failure occurred and the attachments
 class Failure<F> {
   final String location;
   final F failure;

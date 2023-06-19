@@ -41,7 +41,7 @@ class Fail<T, F> extends Result<T, F> {
     String location = _getInvokeLine();
     F2 newFailure = func(failure);
     return Fail<T, F2>._(
-        newFailure, stack.pushFailure(Failure(newFailure, location)));
+        newFailure, stack._pushFailure(Failure(newFailure, location)));
   }
 
   @override
@@ -51,7 +51,7 @@ class Fail<T, F> extends Result<T, F> {
   Result<T, F2> pushFail<F2>(F2 newFailure) {
     String location = _getInvokeLine();
     return Fail<T, F2>._(
-        newFailure, stack.pushFailure(Failure(newFailure, location)));
+        newFailure, stack._pushFailure(Failure(newFailure, location)));
   }
 
   @override
