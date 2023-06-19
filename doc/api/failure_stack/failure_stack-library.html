@@ -76,7 +76,7 @@
 
 </dt>
 <dd>
-  
+  Containing the location of where the failure occurred and the attachments
 </dd>
 
         <dt id="FailureStack">
@@ -84,7 +84,7 @@
 
 </dt>
 <dd>
-  
+  The failure stack that can be printed out.
 </dd>
 
         <dt id="Ok">
@@ -111,17 +111,8 @@
       <h2>Extensions</h2>
 
       <dl>
-        <dt id="ErrorAdapter">
-    <span class="name "><a href="../failure_stack/ErrorAdapter.html">ErrorAdapter</a></span> 
-
-</dt>
-<dd>
-    
-</dd>
-
-
-        <dt id="ExceptionAdapter">
-    <span class="name "><a href="../failure_stack/ExceptionAdapter.html">ExceptionAdapter</a></span> 
+        <dt id="FailureAdapter">
+    <span class="name "><a href="../failure_stack/FailureAdapter.html">FailureAdapter</a></span> 
 
 </dt>
 <dd>
@@ -161,7 +152,8 @@
 <dd>
   In the <code>process</code>, results with type <a href="../failure_stack/Result-class.html">Result&lt;_, NewFailureType&gt;</a> can be unwrapped safely and elegantly
 without causing errors, because the <a href="../failure_stack/resultHandleEnvironment.html">resultHandleEnvironment</a> catches the <a href="../failure_stack/FailureStack-class.html">FailureStack&lt;NewFailureType&gt;</a> for us.
-For async processes use <a href="../failure_stack/asyncResultHandleEnvironment.html">asyncResultHandleEnvironment</a>.
+For async processes use <a href="../failure_stack/asyncResultHandleEnvironment.html">asyncResultHandleEnvironment</a>. <br><br>
+<strong>Warning: Do not unwrap results that do not match the failure type, use <a href="../failure_stack/Result/mapFail.html">Result.mapFail</a> or <a href="../failure_stack/Result/pushFail.html">Result.pushFail</a> to change failure type.</strong>
   
 
 </dd>
@@ -220,8 +212,7 @@ For async processes use <a href="../failure_stack/asyncResultHandleEnvironment.h
         <li><a href="../failure_stack/Result-class.html">Result</a></li>
 
       <li class="section-title"><a href="../failure_stack/failure_stack-library.html#extensions">Extensions</a></li>
-        <li><a href="../failure_stack/ErrorAdapter.html">ErrorAdapter</a></li>
-        <li><a href="../failure_stack/ExceptionAdapter.html">ExceptionAdapter</a></li>
+        <li><a href="../failure_stack/FailureAdapter.html">FailureAdapter</a></li>
 
 
 
@@ -243,7 +234,7 @@ For async processes use <a href="../failure_stack/asyncResultHandleEnvironment.h
 <footer>
   <span class="no-break">
     failure_stack
-      1.0.0
+      0.1.2
   </span>
 
   

@@ -232,19 +232,6 @@ does nothing if it's a ok result.
 
 </dd>
 
-        <dt id="match" class="callable">
-  <span class="name"><a href="../failure_stack/Result/match.html">match</a></span><span class="signature">&lt;<wbr><span class="type-parameter">ReturnValue</span>&gt;</span><span class="signature">(<wbr><span class="parameter" id="match-param-ok">{<span>required</span> <span class="type-annotation">ReturnValue</span> <span class="parameter-name">ok</span>(<span class="parameter" id="param-"><span class="type-annotation">T</span></span>), </span><span class="parameter" id="match-param-fail"><span>required</span> <span class="type-annotation">ReturnValue</span> <span class="parameter-name">fail</span>(<span class="parameter" id="param-"><span class="type-annotation">F</span></span>)}</span>)
-    <span class="returntype parameter">&#8594; ReturnValue</span>
-  </span>
-  
-
-</dt>
-<dd>
-  Exhaustive matching to do different things for ok or fail value
-  
-
-</dd>
-
         <dt id="noSuchMethod" class="callable inherited">
   <span class="name"><a href="https://api.dart.dev/stable/3.0.5/dart-core/Object/noSuchMethod.html">noSuchMethod</a></span><span class="signature">(<wbr><span class="parameter" id="noSuchMethod-param-invocation"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.0.5/dart-core/Invocation-class.html">Invocation</a></span> <span class="parameter-name">invocation</span></span>)
     <span class="returntype parameter">&#8594; dynamic</span>
@@ -382,8 +369,7 @@ or else return the results of evaluating the provided function <code>func</code>
         <li><a href="../failure_stack/Result-class.html">Result</a></li>
 
       <li class="section-title"><a href="../failure_stack/failure_stack-library.html#extensions">Extensions</a></li>
-        <li><a href="../failure_stack/ErrorAdapter.html">ErrorAdapter</a></li>
-        <li><a href="../failure_stack/ExceptionAdapter.html">ExceptionAdapter</a></li>
+        <li><a href="../failure_stack/FailureAdapter.html">FailureAdapter</a></li>
 
 
 
@@ -422,7 +408,6 @@ or else return the results of evaluating the provided function <code>func</code>
           <li><a href="../failure_stack/Result/expect.html">expect</a></li>
           <li><a href="../failure_stack/Result/map.html">map</a></li>
           <li><a href="../failure_stack/Result/mapFail.html">mapFail</a></li>
-          <li><a href="../failure_stack/Result/match.html">match</a></li>
           <li class="inherited"><a href="https://api.dart.dev/stable/3.0.5/dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
           <li><a href="../failure_stack/Result/pushFail.html">pushFail</a></li>
           <li class="inherited"><a href="https://api.dart.dev/stable/3.0.5/dart-core/Object/toString.html">toString</a></li>
@@ -445,7 +430,7 @@ or else return the results of evaluating the provided function <code>func</code>
 <footer>
   <span class="no-break">
     failure_stack
-      1.0.0
+      0.1.2
   </span>
 
   

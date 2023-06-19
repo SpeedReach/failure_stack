@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="description" content="API docs for the failure property from the Failure class, for the Dart programming language.">
-  <title>failure property - Failure class - failure_stack library - Dart API</title>
+  <meta name="description" content="API docs for the intoFailure method from the FailureAdapter extension, for the Dart programming language.">
+  <title>intoFailure method - FailureAdapter extension - failure_stack library - Dart API</title>
 
 
   
@@ -30,10 +30,10 @@
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="../../index.html">failure_stack</a></li>
     <li><a href="../../failure_stack/failure_stack-library.html">failure_stack</a></li>
-    <li><a href="../../failure_stack/Failure-class.html">Failure<span class="signature">&lt;<wbr><span class="type-parameter">F</span>&gt;</span></a></li>
-    <li class="self-crumb">failure property</li>
+    <li><a href="../../failure_stack/FailureAdapter.html">FailureAdapter<span class="signature">&lt;<wbr><span class="type-parameter">F extends Object</span>&gt;</span></a></li>
+    <li class="self-crumb">intoFailure&lt;<wbr><span class="type-parameter">T</span>&gt; method</li>
   </ol>
-  <div class="self-name">failure</div>
+  <div class="self-name">intoFailure</div>
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
@@ -53,22 +53,30 @@
 
   <div id="dartdoc-main-content" class="main-content">
       <div>
-<h1><span class="kind-property">failure</span> property 
+<h1><span class="kind-method">intoFailure&lt;<wbr><span class="type-parameter">T</span>&gt;</span> method 
 </h1></div>
 
-        <section class="multi-line-signature">
-          
-          F
-          <span class="name ">failure</span>
-          <div class="features"><span class="feature">final</span></div>
+    <section class="multi-line-signature">
+      
 
-        </section>
-        
+<span class="returntype"><a href="../../failure_stack/Result-class.html">Result</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>, <span class="type-parameter">F</span>&gt;</span></span>
+<span class="name ">intoFailure</span>&lt;<wbr><span class="type-parameter">T</span>&gt;(<wbr>)
 
-        
+      
+
+    </section>
+    
+
+
+    
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">final F failure;</code></pre>
+  <pre class="language-dart"><code class="language-dart">Result&lt;T, F&gt; intoFailure&lt;T&gt;() {
+  String invokeLine = _getInvokeLine();
+  var failure = Failure(this, invokeLine);
+  return Fail._(
+      this, FailureStack._new(failure, List.of([failure], growable: false)));
+}</code></pre>
 </section>
 
 
@@ -84,34 +92,20 @@
 <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
   <li><a href="../../index.html">failure_stack</a></li>
   <li><a href="../../failure_stack/failure_stack-library.html">failure_stack</a></li>
-  <li><a href="../../failure_stack/Failure-class.html">Failure<span class="signature">&lt;<wbr><span class="type-parameter">F</span>&gt;</span></a></li>
-  <li class="self-crumb">failure property</li>
+  <li><a href="../../failure_stack/FailureAdapter.html">FailureAdapter<span class="signature">&lt;<wbr><span class="type-parameter">F extends Object</span>&gt;</span></a></li>
+  <li class="self-crumb">intoFailure&lt;<wbr><span class="type-parameter">T</span>&gt; method</li>
 </ol>
 
 
-    <h5>Failure class</h5>
+    <h5>FailureAdapter extension</h5>
     <ol>
 
-        <li class="section-title"><a href="../../failure_stack/Failure-class.html#constructors">Constructors</a></li>
-          <li><a href="../../failure_stack/Failure/Failure.html">Failure</a></li>
 
 
-        <li class="section-title">
-          <a href="../../failure_stack/Failure-class.html#instance-properties">Properties</a>
-        </li>
-          <li><a href="../../failure_stack/Failure/attachments.html">attachments</a></li>
-          <li><a href="../../failure_stack/Failure/failure.html">failure</a></li>
-          <li class="inherited"><a href="https://api.dart.dev/stable/3.0.5/dart-core/Object/hashCode.html">hashCode</a></li>
-          <li><a href="../../failure_stack/Failure/location.html">location</a></li>
-          <li class="inherited"><a href="https://api.dart.dev/stable/3.0.5/dart-core/Object/runtimeType.html">runtimeType</a></li>
 
-        <li class="section-title"><a href="../../failure_stack/Failure-class.html#instance-methods">Methods</a></li>
-          <li><a href="../../failure_stack/Failure/attachPrintable.html">attachPrintable</a></li>
-          <li class="inherited"><a href="https://api.dart.dev/stable/3.0.5/dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
-          <li><a href="../../failure_stack/Failure/toString.html">toString</a></li>
 
-        <li class="section-title inherited"><a href="../../failure_stack/Failure-class.html#operators">Operators</a></li>
-          <li class="inherited"><a href="https://api.dart.dev/stable/3.0.5/dart-core/Object/operator_equals.html">operator ==</a></li>
+        <li class="section-title"><a href="../../failure_stack/FailureAdapter.html#instance-methods">Methods</a></li>
+          <li><a href="../../failure_stack/FailureAdapter/intoFailure.html">intoFailure</a></li>
 
 
 

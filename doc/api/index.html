@@ -58,7 +58,7 @@
 <a href=""><img src="https://codecov.io/gh/SpeedReach/failure_stack/blob/main/graph/badge.svg" alt="codecov"></a>
 </p>
 <hr>
-<p>A error handling library inspired by rust and error-stack.</p>
+<p>A error handling library inspired by rust and error-stack, to prevent unpredicted errors.</p>
 <h2 id="why-use-failure_stack-">Why use failure_stack ?</h2>
 <p>The origin error handle method: throw catch, may cause unpredicted errors and behaviors,
 by using the result type as the return value. You are forced to handle every failure that might
@@ -73,7 +73,7 @@ So above the normal Either type, this package has some additional features.</p>
 <li>be able to push failures to the stack and handle them later while still keeping track of them.</li>
 </ol>
 <p>
-  <img src="https://github.com/SpeedReach/failure_stack/blob/main/doc/example-1.jpeg?raw=true" alt="An image of the failure stack" height="300">
+  <img src="https://github.com/SpeedReach/failure_stack/blob/main/doc/example_1.jpg?raw=true" alt="An image of the failure stack" height="200">
 </p>
 <h2 id="usage">Usage</h2>
 <p>Let's say we have a function that parses a <code>String</code> to <code>int</code>, and it may fail when the input is not a number.</p>
@@ -103,25 +103,44 @@ int? result = parse(targetString).ok;
 </code></pre>
 <ol start="3">
 <li>When you are in a function that returns a Result type too,
-use <code>resultHandleEnvironment</code> instead.</li>
+use <code>resultHandleEnvironment</code> instead.
+<strong>Warning: Do not unwrap results that do not match the failure type, use <code>Result.mapFail</code> or <code>Result.pushFail</code> to change failure type.</strong></li>
 </ol>
-<pre class="language-dart"><code class="language-dart">Result&lt;int,ParsingExperimentError&gt; experiment(){
-   return resultHandleEnvironment(() {
-     Result&lt;int,ParsingError&gt; result = parse("o13");
-     // We can unwrap here safely, in other cases, unwrapping a Fail will throw error.
-     // note that we use pushFailure to match Failure type
-     int ok = result
-             .pushFailure(ParsingExperimentError())
-             .attach("extra info") //attach anything you want
-             .unwrap();
-     return Ok(ok);
-   });
+<pre class="language-dart"><code class="language-dart">Result&lt;int, FormatException&gt; parseString(String s) {
+  try {
+    return Ok(int.parse(s));
+  } on FormatException catch (e) {
+    Result&lt;int, FormatException&gt; r = e.intoFailure();
+    return r.attach("Failed parsing $s to int");
+  }
 }
+
+class ParseExperimentFailure {
+  const ParseExperimentFailure();
+  @override
+  String toString() {
+    return "ParseExperimentFailure: invalid experiment input";
+  }
+}
+
+Result&lt;List&lt;int&gt;, ParseExperimentFailure&gt; parseExperiment(String input) {
+  return resultHandleEnvironment(() {
+    List&lt;int&gt; values = input
+        .split(" ")
+        .map((String s) =&gt; parseString(s))  // Result&lt;int, FormatException&gt;
+        .map((Result&lt;int,FormatException&gt; result) =&gt; result.pushFail(const ParseExperimentFailure())) // Result&lt;int, ParseExperimentFailure&gt;
+        //when the result is Ok, it unwraps to int,
+        //otherwise it throws ParseExperimentFailure and get catches by the 
+        //resultHandleEnvironment and returns as Fail(ParseExperimentFailure)
+        .map((Result&lt;int,ParseExperimentFailure&gt; result) =&gt; result.unwrap()) //int
+        .toList(growable: false); 
+    return Ok(values);
+  });
+}
+
 </code></pre>
 <h3 id="converting-exceptions-and-errors-to-failure">Converting Exceptions and Errors to Failure</h3>
-<ol>
-<li>use the <code>intoFailure</code> function</li>
-</ol>
+<p>Use the <code>intoFailure()</code> extension</p>
 <pre class="language-dart"><code class="language-dart">Future&lt;Result&lt;(), DioException&gt;&gt; callApi() async {
  try{
   await dio.post(/*some code*/);
@@ -130,28 +149,6 @@ use <code>resultHandleEnvironment</code> instead.</li>
   return e.intoFailure();
  }
 }
-</code></pre>
-<ol start="2">
-<li>write an adapter function</li>
-</ol>
-<pre class="language-dart"><code class="language-dart">  RepositoryFailure intoRepositoryFailure(){
-    switch(type){
-      case DioExceptionType.connectionTimeout:
-        return const ConnectionFailure();
-      case DioExceptionType.badResponse:
-        if(response == null || response!.statusCode == null) {
-          return const UnExpectedFailure(null);
-        } else if(response!.statusCode == 401) {
-          return const UnAuthorizeFailure();
-        } else if(response!.statusCode! &gt;= 500) {
-          return const ServerFailure();
-        } else if(response!.statusCode! &gt;= 400) {
-          return IllegalActionFailure(response!.statusMessage ?? "");
-        }
-     case DioExceptionType.unknown:
-        return const UnExpectedFailure(null);
-    }
-  }
 </code></pre>
 </section>
 
@@ -199,7 +196,7 @@ use <code>resultHandleEnvironment</code> instead.</li>
 <footer>
   <span class="no-break">
     failure_stack
-      1.0.0
+      0.1.2
   </span>
 
   

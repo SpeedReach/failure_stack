@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="description" content="API docs for the asyncResultHandleEnvironment function from the failure_stack library, for the Dart programming language.">
-  <title>asyncResultHandleEnvironment function - failure_stack library - Dart API</title>
+  <meta name="description" content="API docs for the FailureAdapter extension from the failure_stack library, for the Dart programming language.">
+  <title>FailureAdapter extension - failure_stack library - Dart API</title>
 
 
   
@@ -30,9 +30,9 @@
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="../index.html">failure_stack</a></li>
     <li><a href="../failure_stack/failure_stack-library.html">failure_stack</a></li>
-    <li class="self-crumb">asyncResultHandleEnvironment&lt;<wbr><span class="type-parameter">NewReturnType</span>, <span class="type-parameter">NewFailureType</span>&gt; function</li>
+    <li class="self-crumb">FailureAdapter extension</li>
   </ol>
-  <div class="self-name">asyncResultHandleEnvironment</div>
+  <div class="self-name">FailureAdapter</div>
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
@@ -50,50 +50,59 @@
 </header>
 <main>
 
-  <div id="dartdoc-main-content" class="main-content">
-      <div>
-<h1><span class="kind-function">asyncResultHandleEnvironment&lt;<wbr><span class="type-parameter">NewReturnType</span>, <span class="type-parameter">NewFailureType</span>&gt;</span> function 
+<div id="dartdoc-main-content" class="main-content">
+    <div>
+<h1><span class="kind-class">FailureAdapter&lt;<wbr><span class="type-parameter">F extends Object</span>&gt;</span> extension 
  
 </h1></div>
 
-    <section class="multi-line-signature">
-        
+    
 
-<span class="returntype"><a href="https://api.dart.dev/stable/3.0.5/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../failure_stack/Result-class.html">Result</a><span class="signature">&lt;<wbr><span class="type-parameter">NewReturnType</span>, <span class="type-parameter">NewFailureType</span>&gt;</span></span>&gt;</span></span>
-<span class="name ">asyncResultHandleEnvironment</span>&lt;<wbr><span class="type-parameter">NewReturnType</span>, <span class="type-parameter">NewFailureType</span>&gt;(<wbr><ol class="parameter-list"><li><span class="parameter" id="asyncResultHandleEnvironment-param-process"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.0.5/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../failure_stack/Result-class.html">Result</a><span class="signature">&lt;<wbr><span class="type-parameter">NewReturnType</span>, <span class="type-parameter">NewFailureType</span>&gt;</span></span>&gt;</span></span> <span class="parameter-name">process</span>(<ol class="parameter-list"></ol>
-)</span></li>
-</ol>)
+    <section>
+      <dl class="dl-horizontal">
+        <dt>on</dt>
+        <dd>
+          <ul class="comma-separated clazz-relationships">
+              <li>F</li>
+          </ul>
+        </dd>
+      </dl>
+      
 
-        
 
     </section>
-    
-<section class="desc markdown">
-  <p>Acts same as the <a href="../failure_stack/resultHandleEnvironment.html">resultHandleEnvironment</a> , but for async processes.</p>
-</section>
 
 
     
-<section class="summary source-code" id="source">
-  <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">Future&lt;Result&lt;NewReturnType, NewFailureType&gt;&gt; asyncResultHandleEnvironment&lt;
-        NewReturnType, NewFailureType&gt;(
-    Future&lt;Result&lt;NewReturnType, NewFailureType&gt;&gt; Function() process) async {
-  try {
-    return await process();
-  } on FailureStack&lt;NewFailureType&gt; catch (f) {
-    &#47;&#47;print(f);
-    return Fail._(f.latestFailure.failure, f);
-  } on FailureStack catch (f) {
-    throw FailureTypeError(NewFailureType, f.latestFailure.failure.runtimeType);
-  }
-}</code></pre>
-</section>
+  <section
+      class="summary offset-anchor"
+      id="instance-methods">
+    <h2>Methods</h2>
+    <dl class="callables">
+        <dt id="intoFailure" class="callable">
+  <span class="name"><a href="../failure_stack/FailureAdapter/intoFailure.html">intoFailure</a></span><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="../failure_stack/Result-class.html">Result</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>, <span class="type-parameter">F</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  
+  
+
+</dd>
+
+    </dl>
+  </section>
+    
+    
+    
+    
 
 
-  </div> <!-- /.main-content -->
+</div> <!-- /.main-content -->
 
-  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+<div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
     <header id="header-search-sidebar" class="hidden-l">
   <form class="search-sidebar" role="search">
     <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
@@ -103,7 +112,7 @@
 <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
   <li><a href="../index.html">failure_stack</a></li>
   <li><a href="../failure_stack/failure_stack-library.html">failure_stack</a></li>
-  <li class="self-crumb">asyncResultHandleEnvironment&lt;<wbr><span class="type-parameter">NewReturnType</span>, <span class="type-parameter">NewFailureType</span>&gt; function</li>
+  <li class="self-crumb">FailureAdapter extension</li>
 </ol>
 
 
@@ -132,10 +141,24 @@
         <li><a href="../failure_stack/FailureTypeError-class.html">FailureTypeError</a></li>
 </ol>
 
-  </div><!--/.sidebar-offcanvas-left-->
+</div>
 
-  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
-  </div><!--/.sidebar-offcanvas-->
+<div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+    <ol>
+
+
+
+
+
+        <li class="section-title"><a href="../failure_stack/FailureAdapter.html#instance-methods">Methods</a></li>
+          <li><a href="../failure_stack/FailureAdapter/intoFailure.html">intoFailure</a></li>
+
+
+
+
+</ol>
+
+</div><!--/.sidebar-offcanvas-->
 
 </main>
 
@@ -158,4 +181,5 @@
 </body>
 
 </html>
+
 
