@@ -30,12 +30,6 @@ class Ok<T, F> extends Result<T, F> {
     return Ok(value);
   }
 
-  @override
-  ReturnValue match<ReturnValue>(
-      {required ReturnValue Function(T p1) ok,
-      required ReturnValue Function(F p1) fail}) {
-    return ok(value);
-  }
 
   @override
   T? get ok => value;

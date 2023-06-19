@@ -44,12 +44,6 @@ class Fail<T, F> extends Result<T, F> {
         newFailure, stack.pushFailure(Failure(newFailure, location)));
   }
 
-  @override
-  ReturnValue match<ReturnValue>(
-      {required ReturnValue Function(T p1) ok,
-      required ReturnValue Function(F p1) fail}) {
-    return fail(failure);
-  }
 
   @override
   T? get ok => null;

@@ -48,10 +48,6 @@ sealed class Result<T, F> {
   ///does nothing if it's a ok result.
   Result<T, F2> mapFail<F2>(F2 Function(F failure) func);
 
-  ///Exhaustive matching to do different things for ok or fail value
-  ReturnValue match<ReturnValue>(
-      {required ReturnValue Function(T) ok,
-      required ReturnValue Function(F) fail});
 
   /// attach some extra information to be printed when failed
   Result<T, F> attach(Object o);
