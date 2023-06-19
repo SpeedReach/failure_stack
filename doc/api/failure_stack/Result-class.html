@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the Result class from the failure_stack library, for the Dart programming language.">
+  <title>Result class - failure_stack library - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../static-assets/styles.css?v1">
+  <link rel="icon" href="../static-assets/favicon.png?v1">
+
+  
+</head>
+
+
+<body data-base-href="../" data-using-base-href="false" class="light-theme">
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../index.html">failure_stack</a></li>
+    <li><a href="../failure_stack/failure_stack-library.html">failure_stack</a></li>
+    <li class="self-crumb">Result<span class="signature">&lt;<wbr><span class="type-parameter">T</span>, <span class="type-parameter">F</span>&gt;</span> class</li>
+  </ol>
+  <div class="self-name">Result</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+  <div class="toggle" id="theme-button">
+    <label for="theme">
+      <input type="checkbox" id="theme" value="light-theme">
+      <span id="dark-theme-button" class="material-symbols-outlined">
+        brightness_4
+      </span>
+      <span id="light-theme-button" class="material-symbols-outlined">
+        brightness_5
+      </span>
+    </label>
+  </div>
+</header>
+<main>
+
+  <div id="dartdoc-main-content" class="main-content">
+      <div>
+<h1><span class="kind-class">Result&lt;<wbr><span class="type-parameter">T</span>, <span class="type-parameter">F</span>&gt;</span> class 
+    <a href="https://github.com/dart-lang/language/blob/main/accepted/future-releases/sealed-types/feature-specification.md#sealed-types" class="feature feature-sealed" title="All direct subtypes must be defined in the same library.">sealed</a>
+ 
+</h1></div>
+
+    
+<section class="desc markdown">
+  <p>A container of the result of a function, determine whether is successes or fails, and let users to handle them differently.</p>
+</section>
+
+
+    <section>
+      <dl class="dl-horizontal">
+        
+
+        
+        
+
+        <dt>Implementers</dt>
+        <dd><ul class="comma-separated clazz-relationships">
+          <li><a href="../failure_stack/Fail-class.html">Fail</a></li>
+          <li><a href="../failure_stack/Ok-class.html">Ok</a></li>
+        </ul></dd>
+
+
+        
+
+
+      </dl>
+    </section>
+
+    
+  <section class="summary offset-anchor" id="constructors">
+    <h2>Constructors</h2>
+
+    <dl class="constructor-summary-list">
+        <dt id="Result" class="callable">
+          <span class="name"><a href="../failure_stack/Result/Result.html">Result</a></span><span class="signature">()</span>
+        </dt>
+        <dd>
+          
+            <div class="constructor-modifier features">const</div>
+        </dd>
+    </dl>
+  </section>
+
+    <section class="summary offset-anchor" id="instance-properties">
+      <h2>Properties</h2>
+
+      <dl class="properties">
+        <dt id="fail" class="property">
+  <span class="name"><a href="../failure_stack/Result/fail.html">fail</a></span>
+  <span class="signature">&#8594; F?</span> 
+
+</dt>
+<dd>
+  
+  <div class="features"><span class="feature">read-only</span></div>
+
+</dd>
+
+        <dt id="hashCode" class="property inherited">
+  <span class="name"><a href="https://api.dart.dev/stable/3.0.5/dart-core/Object/hashCode.html">hashCode</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.0.5/dart-core/int-class.html">int</a></span> 
+
+</dt>
+<dd class="inherited">
+  The hash code for this object.
+  <div class="features"><span class="feature">read-only</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="isFail" class="property">
+  <span class="name"><a href="../failure_stack/Result/isFail.html">isFail</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.0.5/dart-core/bool-class.html">bool</a></span> 
+
+</dt>
+<dd>
+  Check whether the result is Failure or not
+  <div class="features"><span class="feature">read-only</span></div>
+
+</dd>
+
+        <dt id="isOk" class="property">
+  <span class="name"><a href="../failure_stack/Result/isOk.html">isOk</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.0.5/dart-core/bool-class.html">bool</a></span> 
+
+</dt>
+<dd>
+  Check whether the result is Ok or not
+  <div class="features"><span class="feature">read-only</span></div>
+
+</dd>
+
+        <dt id="ok" class="property">
+  <span class="name"><a href="../failure_stack/Result/ok.html">ok</a></span>
+  <span class="signature">&#8594; T?</span> 
+
+</dt>
+<dd>
+  Safely returns the ok value or null
+  <div class="features"><span class="feature">read-only</span></div>
+
+</dd>
+
+        <dt id="runtimeType" class="property inherited">
+  <span class="name"><a href="https://api.dart.dev/stable/3.0.5/dart-core/Object/runtimeType.html">runtimeType</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.0.5/dart-core/Type-class.html">Type</a></span> 
+
+</dt>
+<dd class="inherited">
+  A representation of the runtime type of the object.
+  <div class="features"><span class="feature">read-only</span><span class="feature">inherited</span></div>
+
+</dd>
+
+      </dl>
+    </section>
+
+    
+  <section
+      class="summary offset-anchor"
+      id="instance-methods">
+    <h2>Methods</h2>
+    <dl class="callables">
+        <dt id="attach" class="callable">
+  <span class="name"><a href="../failure_stack/Result/attach.html">attach</a></span><span class="signature">(<wbr><span class="parameter" id="attach-param-o"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.0.5/dart-core/Object-class.html">Object</a></span> <span class="parameter-name">o</span></span>)
+    <span class="returntype parameter">&#8594; <a href="../failure_stack/Result-class.html">Result</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>, <span class="type-parameter">F</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  attach some extra information to be printed when failed
+  
+
+</dd>
+
+        <dt id="expect" class="callable">
+  <span class="name"><a href="../failure_stack/Result/expect.html">expect</a></span><span class="signature">(<wbr><span class="parameter" id="expect-param-msg"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.0.5/dart-core/String-class.html">String</a></span> <span class="parameter-name">msg</span></span>)
+    <span class="returntype parameter">&#8594; T</span>
+  </span>
+  
+
+</dt>
+<dd>
+  Returns the contained ok value if success
+or else prints the <code>msg</code>, only for debug purposes.
+  
+
+</dd>
+
+        <dt id="map" class="callable">
+  <span class="name"><a href="../failure_stack/Result/map.html">map</a></span><span class="signature">&lt;<wbr><span class="type-parameter">U</span>&gt;</span><span class="signature">(<wbr><span class="parameter" id="map-param-func"><span class="type-annotation">U</span> <span class="parameter-name">func</span>(<span class="parameter" id="param-"><span class="type-annotation">T</span></span>)</span>)
+    <span class="returntype parameter">&#8594; <a href="../failure_stack/Result-class.html">Result</a><span class="signature">&lt;<wbr><span class="type-parameter">U</span>, <span class="type-parameter">F</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Transforms <a href="../failure_stack/Result-class.html">Result&lt;T,F&gt;</a> to <a href="../failure_stack/Result-class.html">Result&lt;U,F&gt;</a> by applying the provided function <code>func</code> to the contained ok value,
+does nothing if it's a fail result.
+  
+
+</dd>
+
+        <dt id="mapFail" class="callable">
+  <span class="name"><a href="../failure_stack/Result/mapFail.html">mapFail</a></span><span class="signature">&lt;<wbr><span class="type-parameter">F2</span>&gt;</span><span class="signature">(<wbr><span class="parameter" id="mapFail-param-func"><span class="type-annotation">F2</span> <span class="parameter-name">func</span>(<span class="parameter" id="param-failure"><span class="type-annotation">F</span> <span class="parameter-name">failure</span></span>)</span>)
+    <span class="returntype parameter">&#8594; <a href="../failure_stack/Result-class.html">Result</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>, <span class="type-parameter">F2</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Transforms <a href="../failure_stack/Result-class.html">Result&lt;T,F&gt;</a> to <a href="../failure_stack/Result-class.html">Result&lt;T,F2&gt;</a> by pushing a new failure created by mapping the contained current failure if its a fail result ,
+does nothing if it's a ok result.
+  
+
+</dd>
+
+        <dt id="match" class="callable">
+  <span class="name"><a href="../failure_stack/Result/match.html">match</a></span><span class="signature">&lt;<wbr><span class="type-parameter">ReturnValue</span>&gt;</span><span class="signature">(<wbr><span class="parameter" id="match-param-ok">{<span>required</span> <span class="type-annotation">ReturnValue</span> <span class="parameter-name">ok</span>(<span class="parameter" id="param-"><span class="type-annotation">T</span></span>), </span><span class="parameter" id="match-param-fail"><span>required</span> <span class="type-annotation">ReturnValue</span> <span class="parameter-name">fail</span>(<span class="parameter" id="param-"><span class="type-annotation">F</span></span>)}</span>)
+    <span class="returntype parameter">&#8594; ReturnValue</span>
+  </span>
+  
+
+</dt>
+<dd>
+  Exhaustive matching to do different things for ok or fail value
+  
+
+</dd>
+
+        <dt id="noSuchMethod" class="callable inherited">
+  <span class="name"><a href="https://api.dart.dev/stable/3.0.5/dart-core/Object/noSuchMethod.html">noSuchMethod</a></span><span class="signature">(<wbr><span class="parameter" id="noSuchMethod-param-invocation"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.0.5/dart-core/Invocation-class.html">Invocation</a></span> <span class="parameter-name">invocation</span></span>)
+    <span class="returntype parameter">&#8594; dynamic</span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Invoked when a nonexistent method or property is accessed.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="pushFail" class="callable">
+  <span class="name"><a href="../failure_stack/Result/pushFail.html">pushFail</a></span><span class="signature">&lt;<wbr><span class="type-parameter">F2</span>&gt;</span><span class="signature">(<wbr><span class="parameter" id="pushFail-param-newFailure"><span class="type-annotation">F2</span> <span class="parameter-name">newFailure</span></span>)
+    <span class="returntype parameter">&#8594; <a href="../failure_stack/Result-class.html">Result</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>, <span class="type-parameter">F2</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Transforms <a href="../failure_stack/Result-class.html">Result&lt;T,F&gt;</a> to <a href="../failure_stack/Result-class.html">Result&lt;T,F2&gt;</a> by pushing <code>failure</code> to the contained <a href="../failure_stack/FailureStack-class.html">FailureStack</a> if its a fail result ,
+does nothing if it's a ok result.
+  
+
+</dd>
+
+        <dt id="toString" class="callable inherited">
+  <span class="name"><a href="https://api.dart.dev/stable/3.0.5/dart-core/Object/toString.html">toString</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.0.5/dart-core/String-class.html">String</a></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  A string representation of this object.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="unwrap" class="callable">
+  <span class="name"><a href="../failure_stack/Result/unwrap.html">unwrap</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; T</span>
+  </span>
+  
+
+</dt>
+<dd>
+  Returns the contained ok value if success
+or else throws the <a href="../failure_stack/FailureStack-class.html">FailureStack</a> if the <a href="../failure_stack/Result-class.html">Result</a> is not ok
+notes: check out <a href="../failure_stack/resultHandleEnvironment.html">resultHandleEnvironment</a> to effectively handle results.
+  
+
+</dd>
+
+        <dt id="unwrapOr" class="callable">
+  <span class="name"><a href="../failure_stack/Result/unwrapOr.html">unwrapOr</a></span><span class="signature">(<wbr><span class="parameter" id="unwrapOr-param-defaultValue"><span class="type-annotation">T</span> <span class="parameter-name">defaultValue</span></span>)
+    <span class="returntype parameter">&#8594; T</span>
+  </span>
+  
+
+</dt>
+<dd>
+  Returns the contained ok value if success
+or else returns the <code>defaultValue</code>
+  
+
+</dd>
+
+        <dt id="unwrapOrElse" class="callable">
+  <span class="name"><a href="../failure_stack/Result/unwrapOrElse.html">unwrapOrElse</a></span><span class="signature">(<wbr><span class="parameter" id="unwrapOrElse-param-func"><span class="type-annotation">T</span> <span class="parameter-name">func</span>()</span>)
+    <span class="returntype parameter">&#8594; T</span>
+  </span>
+  
+
+</dt>
+<dd>
+  Returns the contained ok value if success
+or else return the results of evaluating the provided function <code>func</code>
+  
+
+</dd>
+
+    </dl>
+  </section>
+    
+  <section
+      class="summary offset-anchor inherited"
+      id="operators">
+    <h2>Operators</h2>
+    <dl class="callables">
+        <dt id="operator ==" class="callable inherited">
+  <span class="name"><a href="https://api.dart.dev/stable/3.0.5/dart-core/Object/operator_equals.html">operator ==</a></span><span class="signature">(<wbr><span class="parameter" id="==-param-other"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.0.5/dart-core/Object-class.html">Object</a></span> <span class="parameter-name">other</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.0.5/dart-core/bool-class.html">bool</a></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  The equality operator.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+    </dl>
+  </section>
+    
+    
+    
+
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+  <li><a href="../index.html">failure_stack</a></li>
+  <li><a href="../failure_stack/failure_stack-library.html">failure_stack</a></li>
+  <li class="self-crumb">Result<span class="signature">&lt;<wbr><span class="type-parameter">T</span>, <span class="type-parameter">F</span>&gt;</span> class</li>
+</ol>
+
+
+    <h5>failure_stack library</h5>
+    <ol>
+      <li class="section-title"><a href="../failure_stack/failure_stack-library.html#classes">Classes</a></li>
+        <li><a href="../failure_stack/Fail-class.html">Fail</a></li>
+        <li><a href="../failure_stack/Failure-class.html">Failure</a></li>
+        <li><a href="../failure_stack/FailureStack-class.html">FailureStack</a></li>
+        <li><a href="../failure_stack/Ok-class.html">Ok</a></li>
+        <li><a href="../failure_stack/Result-class.html">Result</a></li>
+
+      <li class="section-title"><a href="../failure_stack/failure_stack-library.html#extensions">Extensions</a></li>
+        <li><a href="../failure_stack/ErrorAdapter.html">ErrorAdapter</a></li>
+        <li><a href="../failure_stack/ExceptionAdapter.html">ExceptionAdapter</a></li>
+
+
+
+
+      <li class="section-title"><a href="../failure_stack/failure_stack-library.html#functions">Functions</a></li>
+        <li><a href="../failure_stack/asyncResultHandleEnvironment.html">asyncResultHandleEnvironment</a></li>
+        <li><a href="../failure_stack/resultHandleEnvironment.html">resultHandleEnvironment</a></li>
+
+
+
+      <li class="section-title"><a href="../failure_stack/failure_stack-library.html#exceptions">Exceptions</a></li>
+        <li><a href="../failure_stack/FailureTypeError-class.html">FailureTypeError</a></li>
+</ol>
+
+  </div>
+
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+    <ol>
+
+        <li class="section-title"><a href="../failure_stack/Result-class.html#constructors">Constructors</a></li>
+          <li><a href="../failure_stack/Result/Result.html">Result</a></li>
+
+
+        <li class="section-title">
+          <a href="../failure_stack/Result-class.html#instance-properties">Properties</a>
+        </li>
+          <li><a href="../failure_stack/Result/fail.html">fail</a></li>
+          <li class="inherited"><a href="https://api.dart.dev/stable/3.0.5/dart-core/Object/hashCode.html">hashCode</a></li>
+          <li><a href="../failure_stack/Result/isFail.html">isFail</a></li>
+          <li><a href="../failure_stack/Result/isOk.html">isOk</a></li>
+          <li><a href="../failure_stack/Result/ok.html">ok</a></li>
+          <li class="inherited"><a href="https://api.dart.dev/stable/3.0.5/dart-core/Object/runtimeType.html">runtimeType</a></li>
+
+        <li class="section-title"><a href="../failure_stack/Result-class.html#instance-methods">Methods</a></li>
+          <li><a href="../failure_stack/Result/attach.html">attach</a></li>
+          <li><a href="../failure_stack/Result/expect.html">expect</a></li>
+          <li><a href="../failure_stack/Result/map.html">map</a></li>
+          <li><a href="../failure_stack/Result/mapFail.html">mapFail</a></li>
+          <li><a href="../failure_stack/Result/match.html">match</a></li>
+          <li class="inherited"><a href="https://api.dart.dev/stable/3.0.5/dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
+          <li><a href="../failure_stack/Result/pushFail.html">pushFail</a></li>
+          <li class="inherited"><a href="https://api.dart.dev/stable/3.0.5/dart-core/Object/toString.html">toString</a></li>
+          <li><a href="../failure_stack/Result/unwrap.html">unwrap</a></li>
+          <li><a href="../failure_stack/Result/unwrapOr.html">unwrapOr</a></li>
+          <li><a href="../failure_stack/Result/unwrapOrElse.html">unwrapOrElse</a></li>
+
+        <li class="section-title inherited"><a href="../failure_stack/Result-class.html#operators">Operators</a></li>
+          <li class="inherited"><a href="https://api.dart.dev/stable/3.0.5/dart-core/Object/operator_equals.html">operator ==</a></li>
+
+
+
+
+</ol>
+
+  </div><!--/.sidebar-offcanvas-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    failure_stack
+      1.0.0
+  </span>
+
+  
+</footer>
+
+
+
+<script src="../static-assets/highlight.pack.js?v1"></script>
+<script src="../static-assets/docs.dart.js"></script>
+
+
+
+</body>
+
+</html>
+
