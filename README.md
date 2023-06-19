@@ -79,13 +79,12 @@ Result<List<int>, ParseExperimentFailure> parseExperiment(String input) {
   return resultHandleEnvironment(() {
     List<int> values = input
         .split(" ")
-        .map((e) => parseString(e))  // Result<int, FormatException>
-        .map((e) => e.pushFail(const ParseExperimentFailure())) // Result<int, ParseExperimentFailure>
-        
+        .map((String s) => parseString(s))  // Result<int, FormatException>
+        .map((Result<int,FormatException> result) => result.pushFail(const ParseExperimentFailure())) // Result<int, ParseExperimentFailure>
         //when the result is Ok, it unwraps to int,
         //otherwise it throws ParseExperimentFailure and get catches by the 
         //resultHandleEnvironment and returns as Fail(ParseExperimentFailure)
-        .map((e) => e.unwrap()) //int
+        .map((Result<int,ParseExperimentFailure> result) => result.unwrap()) //int
         .toList(growable: false); 
     return Ok(values);
   });
