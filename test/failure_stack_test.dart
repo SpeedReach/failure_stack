@@ -92,6 +92,7 @@ void main(){
         e = er;
       }
       assert(e != null);
+      print(e);
     });
 
   });
@@ -118,6 +119,8 @@ void main(){
   test("UI", () {
     final f1 = Fail(1);
     final f2 = f1.pushFail(2);
+    f2.attach("aatttt 1");
+    f2.attach("attt 2");
     print(f2);
   });
 

@@ -1,13 +1,13 @@
 part of 'result.dart';
 
 class FailureStack<F> {
-  final Failure<F> latestFailure;
-  final List<Failure> frames;
+  final _Failure<F> latestFailure;
+  final List<_Failure> frames;
 
   FailureStack(this.latestFailure)
       : frames = List.of([latestFailure], growable: false);
 
-  FailureStack._push(FailureStack originStack, Failure<F> newFailure)
+  FailureStack._push(FailureStack originStack, _Failure<F> newFailure)
       : latestFailure = newFailure,
         frames = List.from([
           newFailure,
@@ -16,7 +16,7 @@ class FailureStack<F> {
 
   FailureStack._new(this.latestFailure, this.frames);
 
-  FailureStack<F2> pushFailure<F2>(Failure<F2> newFailure) {
+  FailureStack<F2> pushFailure<F2>(_Failure<F2> newFailure) {
     return FailureStack._push(this, newFailure);
   }
 
@@ -52,19 +52,16 @@ class FailureStack<F> {
     return buffer.toString();
   }
 
-  FailureStack<F> copy() {
-    return FailureStack._new(latestFailure, List.from(frames, growable: false));
-  }
 }
 
-class Failure<F> {
+class _Failure<F> {
   final String location;
   final F failure;
   final List<Object> _attachments = [];
 
   List<Object> get attachments => List.from(_attachments, growable: false);
 
-  Failure(this.failure, this.location);
+  _Failure(this.failure, this.location);
 
   void attachPrintable(Object o) {
     _attachments.add(o);
