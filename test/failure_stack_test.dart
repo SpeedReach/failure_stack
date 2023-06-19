@@ -19,6 +19,10 @@ void main(){
     assert(ok.fail == null);
     final newOk = ok.map((p1) => p1+1);
     assert(newOk.ok == 2);
+    assert(ok.pushFail(3).isOk);
+    ok.attach("printable");
+
+    ok.expect("should not fail");
   });
 
   group("test fail", () {
@@ -27,6 +31,7 @@ void main(){
       assert(fail.isFail);
       assert(!fail.isOk );
       assert(fail.fail == "failed");
+      assert(fail.ok == null);
       assert(fail.failure == "failed");
     });
     test("attachment", () {
@@ -43,21 +48,54 @@ void main(){
     });
   });
 
-  test("sync environment", (){
-    final fail = Fail<int,String>("failed");
-    Result<int,int> result = resultHandleEnvironment(() => Ok(fail.pushFail(-1).unwrap()));
-    assert(result.isFail);
-    assert(result.fail == -1);
+
+
+  group("result handle environment", () {
+
+    test("async environment no error", () async {
+      final r = await failFutureNumber();
+      Result<int,int> result = await asyncResultHandleEnvironment(() async {
+        return Ok(r.pushFail(-1).unwrap());
+      });
+      assert(result.isFail);
+      assert(result.fail == -1);
+    });
+
+    test("async environment with error", () async{
+      final r = await failFutureNumber();
+      FailureTypeError? e;
+      try{
+        Result<int,int> result = await asyncResultHandleEnvironment(() async {
+          return Ok(r.unwrap());
+        });
+      }
+      on FailureTypeError catch (er){
+        e = er;
+      }
+      assert(e != null);
+    });
+
+    test("sync environment no error", (){
+      final fail = Fail<int,String>("failed");
+      Result<int,int> result = resultHandleEnvironment(() => Ok(fail.pushFail(-1).unwrap()));
+      assert(result.isFail);
+      assert(result.fail == -1);
+    });
+
+    test("sync env with error", (){
+      FailureTypeError? e;
+      try{
+        final fail = Fail<int,String>("failed");
+        Result<int,int> result = resultHandleEnvironment(() => Ok(fail.unwrap()));
+      }
+      on FailureTypeError catch(er){
+        e = er;
+      }
+      assert(e != null);
+    });
+
   });
 
-  test("async environment", () async {
-    Result<int,int> result = await asyncResultHandleEnvironment(() async {
-      final result = (await failFutureNumber()).pushFail(-1);
-      return Ok(result.unwrap());
-    });
-    assert(result.isFail);
-    assert(result.fail == -1);
-  });
 
   test("adapt Exceptions and Errors", () {
     Result<int,FormatException> parse(String s) {
@@ -77,6 +115,11 @@ void main(){
     assert(f.fail != null);
   });
 
+  test("UI", () {
+    final f1 = Fail(1);
+    final f2 = f1.pushFail(2);
+    print(f2);
+  });
 
 }
 

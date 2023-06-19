@@ -36,7 +36,7 @@ class FailureStack<F> {
         writeMultiple(backtrace - 1, "  ");
         buffer.write("╰");
         writeMultiple(backtrace, "─");
-        buffer.write("▶");
+        buffer.write("▶ ");
       }
       buffer.write("${f.failure.toString().replaceAll("\n", "")}\n");
       writeMultiple(backtrace, "  ");

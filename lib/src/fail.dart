@@ -75,6 +75,11 @@ class Fail<T, F> extends Result<T, F> {
     stack.latestFailure.attachPrintable(o);
     return this;
   }
+
+  @override
+  String toString() {
+    return stack.toString();
+  }
 }
 
 extension FailureAdapter<F extends Object> on F {
