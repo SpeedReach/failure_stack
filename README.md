@@ -23,7 +23,7 @@ So above the normal Either type, this package has some additional features.
 3. be able to push failures to the stack and handle them later while still keeping track of them.
 
 <p>
-  <img src="https://github.com/SpeedReach/failure_stack/blob/main/doc/example-1.jpeg?raw=true"
+  <img src="https://github.com/SpeedReach/failure_stack/blob/main/doc/example_1.jpg?raw=true"
     alt="An image of the failure stack" height="300"/>
 </p>
 
