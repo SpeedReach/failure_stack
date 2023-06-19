@@ -30,6 +30,8 @@ jobs:
 
       - name: Install dependencies
         run: dart pub get
+      - name: Install flutter dependencies
+        run: flutter pub get
 
       # Consider passing '--fatal-infos' for slightly stricter analysis.
       - name: Analyze project source
