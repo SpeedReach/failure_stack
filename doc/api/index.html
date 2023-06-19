@@ -52,34 +52,107 @@
   <div id="dartdoc-main-content" class="main-content">
       
 <section class="desc markdown">
-  <!-- 
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
-
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages). 
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages). 
--->
-<p>TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.</p>
-<h2 id="features">Features</h2>
-<p>TODO: List what your package can do. Maybe include images, gifs, or videos.</p>
-<h2 id="getting-started">Getting started</h2>
-<p>TODO: List prerequisites and provide or point to information on how to
-start using the package.</p>
+  <p></p>
+<p align="center">
+<a href=""><img src="https://github.com/SpeedReach/failure_stack/actions/workflows/build.yml/badge.svg" alt="build"></a>
+<a href=""><img src="https://codecov.io/gh/SpeedReach/failure_stack/blob/main/graph/badge.svg" alt="codecov"></a>
+</p>
+<hr>
+<p>A error handling library inspired by rust and error-stack.</p>
+<h2 id="why-use-failure_stack-">Why use failure_stack ?</h2>
+<p>The origin error handle method: throw catch, may cause unpredicted errors and behaviors,
+by using the result type as the return value. You are forced to handle every failure that might
+occur, making your program less likely to cause errors.<br>
+You may say, I get it , Result and Either types are great, but dartz and fpdart already that
+has these, why create another library?  The above mentioned are great libraries for dart functional programming,
+but when it comes to error handling , they might not be ideal when your program becomes larger and contains a lot nested function calls.
+So above the normal Either type, this package has some additional features.</p>
+<ol>
+<li>encourage the user to provide a new error type if the scope is changed, usually by crossing layers in apps or 3rd party libraries(for example, <code>ApiError</code> for infrastructure layer errors and <code>InvalidInputError</code> for application layers.)</li>
+<li>be able to attach any extra data to failures</li>
+<li>be able to push failures to the stack and handle them later while still keeping track of them.</li>
+</ol>
+<p>
+  <img src="https://github.com/SpeedReach/failure_stack/blob/main/doc/example-1.jpeg?raw=true" alt="An image of the failure stack" height="300">
+</p>
 <h2 id="usage">Usage</h2>
-<p>TODO: Include short and useful examples for package users. Add longer examples
-to <code>/example</code> folder.</p>
-<pre class="language-dart"><code class="language-dart">const like = 'sample';
+<p>Let's say we have a function that parses a <code>String</code> to <code>int</code>, and it may fail when the input is not a number.</p>
+<pre class="language-dart"><code class="language-dart">class ParsingFailure{} // The failure representing that the parsing failed
+
+Result&lt;int,ParsingFailure&gt; parse(String numString);
+
 </code></pre>
-<h2 id="additional-information">Additional information</h2>
-<p>TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.</p>
+<p>When we use the function, we have 3 ways to handle the result.</p>
+<ol>
+<li>When you don't care about the failure that might occur.</li>
+</ol>
+<pre class="language-dart"><code class="language-dart">// .ok returns the contained ok value, since the result might fail, it is a nullable type.
+int? result = parse(targetString).ok;
+</code></pre>
+<ol start="2">
+<li>Exhaustive matching.</li>
+</ol>
+<pre class="language-dart"><code class="language-dart">switch(parse(targetString)){
+  case Ok&lt;int,ParsingFailure&gt; ok: {
+    print("success: ${ok.value}");
+  },  
+  case Fail&lt;int,ParsingFailure&gt; fail: {
+    print("Failed: ${fail.failure}");
+  } 
+}
+</code></pre>
+<ol start="3">
+<li>When you are in a function that returns a Result type too,
+use <code>resultHandleEnvironment</code> instead.</li>
+</ol>
+<pre class="language-dart"><code class="language-dart">Result&lt;int,ParsingExperimentError&gt; experiment(){
+   return resultHandleEnvironment(() {
+     Result&lt;int,ParsingError&gt; result = parse("o13");
+     // We can unwrap here safely, in other cases, unwrapping a Fail will throw error.
+     // note that we use pushFailure to match Failure type
+     int ok = result
+             .pushFailure(ParsingExperimentError())
+             .attach("extra info") //attach anything you want
+             .unwrap();
+     return Ok(ok);
+   });
+}
+</code></pre>
+<h3 id="converting-exceptions-and-errors-to-failure">Converting Exceptions and Errors to Failure</h3>
+<ol>
+<li>use the <code>intoFailure</code> function</li>
+</ol>
+<pre class="language-dart"><code class="language-dart">Future&lt;Result&lt;(), DioException&gt;&gt; callApi() async {
+ try{
+  await dio.post(/*some code*/);
+ }
+ on DioException catch(e){
+  return e.intoFailure();
+ }
+}
+</code></pre>
+<ol start="2">
+<li>write an adapter function</li>
+</ol>
+<pre class="language-dart"><code class="language-dart">  RepositoryFailure intoRepositoryFailure(){
+    switch(type){
+      case DioExceptionType.connectionTimeout:
+        return const ConnectionFailure();
+      case DioExceptionType.badResponse:
+        if(response == null || response!.statusCode == null) {
+          return const UnExpectedFailure(null);
+        } else if(response!.statusCode == 401) {
+          return const UnAuthorizeFailure();
+        } else if(response!.statusCode! &gt;= 500) {
+          return const ServerFailure();
+        } else if(response!.statusCode! &gt;= 400) {
+          return IllegalActionFailure(response!.statusMessage ?? "");
+        }
+     case DioExceptionType.unknown:
+        return const UnExpectedFailure(null);
+    }
+  }
+</code></pre>
 </section>
 
 
