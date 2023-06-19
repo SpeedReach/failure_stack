@@ -24,7 +24,7 @@ So above the normal Either type, this package has some additional features.
 
 <p>
   <img src="https://github.com/SpeedReach/failure_stack/blob/main/doc/example_1.jpg?raw=true"
-    alt="An image of the failure stack" height="300"/>
+    alt="An image of the failure stack" height="200"/>
 </p>
 
 ## Usage
